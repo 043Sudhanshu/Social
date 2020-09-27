@@ -4,12 +4,14 @@ const port=8000;
 
 const app=express();
 
-// const path=require('path');
-// app.set('view engine','ejs');
-// app.set('views',path.join(__dirname,'views'));
+const path=require('path');
+app.set('view engine','ejs');
+app.set('views',path.join(__dirname,'views'));
 
 // app.use(express.urlencoded());
 // app.use(express.static('assets'));
+const layouts=require('express-ejs-layouts');
+app.use(layouts);
 
 app.use('/',require('./routes/index.js'));
 
