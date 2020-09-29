@@ -19,8 +19,6 @@ app.set('layout extractScripts',true);
 /***middleware***/
 app.use(express.urlencoded());
 app.use(express.static('./assets'));
-const cookieParser=require('cookie-parser');
-app.use(cookieParser());
 
 /*****routes****/
 app.use('/',require('./routes/index.js'));
