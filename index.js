@@ -24,18 +24,25 @@ app.use(express.static('./assets'));
 const passport=require('passport');
 const passportLocalStrategy=require('./config/passport');
 const session=require('express-session');
+const mongoStore=require('connect-mongo')(session);
 
 app.use(session({
    name:'Social',
    secret:'CHAUHANSUDHANSHU',
    saveUninitialized:false,
    resave:false,
+   cookie:{
    maxAge:(1000*60*60)
+   },
+   store:(new mongoStore({
+     mongooseConnection:db,
+     autoRemove:'disabled'
+   },function(err){console.log(err || "connected to mongostore") }))
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
-
-passport.setAuthentication;
+app.use(passport.setUserToLocals);
 
 
 /*****routes****/

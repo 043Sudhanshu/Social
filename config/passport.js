@@ -13,6 +13,7 @@ passport.use(new localstrategy({
             console.log("Invalid username/password");
           return done(null,false);
         }else{
+            console.log("Authenticated user");
          return done(null,USER);
         }
     });
@@ -32,18 +33,19 @@ passport.deserializeUser(function(id,done){
     });
 });
 
-module.exports.checkAuthentication=function(req,res,next){
+passport.checkAuthentication=function(req,res,next){
     if(req.isAuthenticated()){
-      return next();
+       return next();
     }
-    return res.redirect('/');
+    return res.redirect('/users/login');
 }
 
-module.exports.setAuthentication=function(req,res,next){
+passport.setUserToLocals=function(req,res,next){
+    console.log("in set user to locals",req.isAuthenticated());
     if(req.isAuthenticated()){
-        res.locals.user=req.user;
+    res.locals.user=req.user;
     }
-   return next();
+    next();
 }
 
 

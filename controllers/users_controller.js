@@ -1,19 +1,27 @@
 const user=require('../models/user_schema');
 
 module.exports.login=function(req,res){
+  if(req.isAuthenticated()){
+    return res.redirect('/users/profile');
+  }else{
   return res.render('login',{
       title:'login'
-  });
+    });
+  }
 }
 
 module.exports.signup=function(req,res){
+  if(req.isAuthenticated()){
+    return res.redirect('/users/profile');
+  }else{
   return res.render('signup',{
       title:'signup'
-  });
+    });
+  }
 }
 
 module.exports.profile=function(req,res){
-    console.log(res.locals);
+
     return res.render('users_profile',{
       title:'user_profile'
     });
