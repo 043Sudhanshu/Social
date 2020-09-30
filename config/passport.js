@@ -6,7 +6,7 @@ const user=require('../models/user_schema');
 passport.use(new localstrategy({
     usernameField:'email'
 },function(Email,password,done){
-  
+   
     user.findOne({email:Email},function(err,USER){
         if(err){return done(err);}
         if(!USER || password!=USER.password){
@@ -31,6 +31,20 @@ passport.deserializeUser(function(id,done){
      return done(null,USER);
     });
 });
+
+module.exports.checkAuthentication=function(req,res,next){
+    if(req.isAuthenticated()){
+      return next();
+    }
+    return res.redirect('/');
+}
+
+module.exports.setAuthentication=function(req,res,next){
+    if(req.isAuthenticated()){
+        res.locals.user=req.user;
+    }
+   return next();
+}
 
 
 module.exports=passport;

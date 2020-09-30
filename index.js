@@ -20,6 +20,24 @@ app.set('layout extractScripts',true);
 app.use(express.urlencoded());
 app.use(express.static('./assets'));
 
+/**passport-authetication***/
+const passport=require('passport');
+const passportLocalStrategy=require('./config/passport');
+const session=require('express-session');
+
+app.use(session({
+   name:'Social',
+   secret:'CHAUHANSUDHANSHU',
+   saveUninitialized:false,
+   resave:false,
+   maxAge:(1000*60*60)
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.setAuthentication;
+
+
 /*****routes****/
 app.use('/',require('./routes/index.js'));
 
