@@ -1,1 +1,26 @@
-<h1>header</h1>
+<link rel="stylesheet" href="/css/header.css">
+<div id="header">
+   <div class='left'>
+    <i class="fa fa-users">Social</i>
+    
+    </div> 
+    <div class='right'>
+        <%if(locals.user){%>
+            <div>
+                 <a href='/users/profile'> <%= user.username %> </a>
+            </div>
+           <div>
+                <a href="/users/logout">   logout </a>
+            </div>
+        <%}else{%>
+            <div >
+                <a href='/users/login'>  login  </a>
+           </div>
+          <div >
+               <a href="/users/signup">   signup </a>
+           </div>
+        <%}%>
+    </div>  
+</div>
+
+

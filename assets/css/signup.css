@@ -1,0 +1,30 @@
+#signup {
+  text-align: center;
+  height: 100%;
+  background-color: yellowgreen;
+  padding: 34px;
+  background-position: center;
+  background-image: url(https://all4desktop.com/data_images/original/4237546-background-hd.jpg); }
+
+input {
+  border-radius: 10px;
+  margin: 20px;
+  background-color: #bff550;
+  color: black;
+  height: 40px;
+  font-size: medium;
+  width: 270px;
+  text-align: center;
+  box-shadow: -5px -4px 8px -2px black inset;
+  border: 0px;
+  transition: width 0.5s ease-in-out; }
+  input:hover {
+    border: 2px solid skyblue; }
+
+button {
+  height: 20px;
+  width: 70px;
+  border-radius: 5rem;
+  background-color: #bff550;
+  border: 0;
+  box-shadow: 6px 5px 16px -2px black; }

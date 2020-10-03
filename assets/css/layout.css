@@ -1,6 +1,7 @@
-body{
-    margin:0;
-    color:white;
-    background-color: red;
-    text-align: center;
-}
+body {
+  background-color: antiquewhite;
+  color: green;
+  margin: 0;
+  font-family: "Lucida Console", Courier, monospace; }
+  body h1 {
+    color: red; }
