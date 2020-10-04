@@ -1,6 +1,15 @@
-const user=require('../models/user_schema');
+const user=require('../models/user');
+const post=require('../models/post');
+
 module.exports.home=function(req,res){
-   return res.render('home',{
-      title:'home'
-   });  
+
+   post.find({}).populate('usr').exec(function(err,data){
+   
+      return res.render('home',{
+      title:'home',
+      posts:data
+     });
+   
+   });
+
 }

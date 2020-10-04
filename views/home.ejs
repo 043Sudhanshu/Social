@@ -1,4 +1,31 @@
 <link rel="stylesheet" href="/css/home.css">
-<div id="middle-part">
-<h1>HOME</h1>
+<div id='home'>
+
+<h1> Social/home </h1>
+
+<% if(locals.user) {%>
+    
+<h3> POST HERE ! </h3>
+<div id='create-post'>
+<form action='/posts/create' method="POST">
+<textarea name="content" rows="5" cols="25" placeholder="Type here..."> </textarea><br><br>
+<input type="submit" value="POST">
+</form>
+</div>
+
+<ul>
+<%for(post of posts){%>
+
+    <li>
+    name : <%= post.usr.username %><br>
+    post : <%= post.content%>
+    </li>
+
+<%}%>
+</ul>   
+
+<%}%>
+
+
+
 </div>

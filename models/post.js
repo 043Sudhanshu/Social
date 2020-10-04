@@ -6,9 +6,9 @@ const postSchema=new mongoose.Schema({
         type:String,
         required:true
     },
-    user:{
+    usr:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'user'
+        ref:'users'
     }
 
 },{timestamps:true});

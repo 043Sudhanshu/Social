@@ -5,6 +5,7 @@ const app=express();
 /****data base*****/
 
 const db=require('./config/mongoose');
+const user=require('./models/user');
 
 /***view***/
 

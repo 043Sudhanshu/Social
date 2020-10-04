@@ -1,4 +1,4 @@
-const user=require('../models/user_schema');
+const user=require('../models/user');
 
 module.exports.login=function(req,res){
   if(req.isAuthenticated()){
