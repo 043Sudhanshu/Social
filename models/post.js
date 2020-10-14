@@ -9,10 +9,16 @@ const postSchema=new mongoose.Schema({
     usr:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'users'
-    }
+    },
+    commentidarray:[
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'comments'
+        }
+    ]
 
 },{timestamps:true});
 
-const post=mongoose.model('post',postSchema);
+const post=mongoose.model('posts',postSchema);
 
 module.exports=post;
