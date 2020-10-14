@@ -6,28 +6,34 @@
 <% if(locals.user) {%>
     
 <h3> POST HERE ! </h3>
-
-<div id='create-post'>
-<form action='/posts/create' method="POST">
-<textarea name="content" rows="5" cols="25" placeholder="Type here..."> </textarea><br><br>
-<input type="submit" value="POST">
-</form>
-
-</div>
-
+        <div id='create-post'>
+                <form action='/posts/create' method="POST">
+                <textarea name="content" rows="5" cols="25" placeholder="Type here..."> </textarea><br><br>
+                <input type="submit" value="POST">
+                </form>
+        </div>
 <ul>
 <%for(post of posts){%>
     <li>
     name : <%= post.usr.username %><br>
     post : <%= post.content%>
+       <ul>
+        <%for(comment of post.commentidarray){%>
+            <li>
+           <%= comment.userid.username %> &nbsp; <%= comment.content %>
+            </li>   
+        <%}%>
+       </ul>
     </li>
     <br>
-        
-        <form action='/comments/create' method="POST">
-        <textarea name="content" rows="5" cols="10" placeholder="comment here..."> </textarea>
-        <input type='hidden' name='postid' value='<%= post._id %>'>
-        <input type="submit" value="POST">
-        </form>
+        <div id='create-comment'>
+                <form action='/comments/create' method="POST">
+                    <input name="content" placeholder="comment here...">
+                    <input type='hidden' name='postid' value='<%= post._id %>'>
+                    <input type="submit" value="comment">
+                </form>
+        </div>
+
 <%}%>
 </ul>   
 
