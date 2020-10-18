@@ -21,9 +21,12 @@ module.exports.signup=function(req,res){
 }
 
 module.exports.profile=function(req,res){
-
-    return res.render('users_profile',{
-      title:'user_profile'
+    const id=req.query.id;
+    user.findById(id,function(err,USER){
+      return res.render('users_profile',{
+        title:'user_profile',
+        u:USER
+      });
     });
 }
 

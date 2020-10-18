@@ -12,11 +12,13 @@ module.exports.home=function(req,res){
       })
    })
    .exec(function(err,data){
-      return res.render('home',{
-      title:'home',
-      posts:data
-     });
-   
+      user.find({},function(err,users){
+         return res.render('home',{
+            title:'home',
+            posts:data,
+            all_users:users
+      });
+      
+});
    });
-
 }

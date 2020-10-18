@@ -6,39 +6,55 @@
 <% if(locals.user) {%>
     
 <h3> POST HERE ! </h3>
-        <div id='create-post'>
-                <form action='/posts/create' method="POST">
-                <textarea name="content" rows="5" cols="25" placeholder="Type here..."> </textarea><br><br>
-                <input type="submit" value="POST">
-                </form>
-        </div>
+<div id='create-post'>
+        <form action='/posts/create' method="POST">
+        <textarea name="content" rows="5" cols="25" placeholder="Type here..."> </textarea><br><br>
+        <input type="submit" value="POST">
+        </form>
+</div>
+<div id="All-post-comment">
 <ul>
-<%for(post of posts){%>
-    <li>
-    name : <%= post.usr.username %><br>
-    post : <%= post.content%>
-       <ul>
-        <%for(comment of post.commentidarray){%>
-            <li>
-           <%= comment.userid.username %> &nbsp; <%= comment.content %>
-            </li>   
-        <%}%>
-       </ul>
-    </li>
-    <br>
-        <div id='create-comment'>
-                <form action='/comments/create' method="POST">
-                    <input name="content" placeholder="comment here...">
-                    <input type='hidden' name='postid' value='<%= post._id %>'>
-                    <input type="submit" value="comment">
-                </form>
-        </div>
-
+ <%for(post of posts){%>
+            <li>    
+                   <%if(post.usr.id==locals.user.id){%>    
+                    <a href="/posts/delete/?id=<%=post.id%>"> X </a>
+                    <%}%>
+                    name : <small> <%= post.usr.username %> </small> <br>
+                        post : <%= post.content%> <br> <br>
+                <ul>
+                        
+                        <%for(comment of post.commentidarray){%>
+                                <li> 
+                                        <%if(comment.userid.id==locals.user.id){%>    
+                                                <a href="/comments/delete/?id=<%=comment.id%>"> X </a>
+                                                <%}%>
+                                        <small> <%= comment.userid.username %> </small>
+                                        <br>  <%= comment.content %>
+                                </li>   
+                        <%}%>
+                </ul>
+            </li>
+     <br>
+<div id='create-comment'>
+        <form action='/comments/create' method="POST">
+                <input name="content" placeholder="comment here...">
+                <input type='hidden' name='postid' value='<%= post._id %>'>
+                <input type="submit" value="comment">
+        </form>
+</div>
 <%}%>
 </ul>   
-
+</div>
 <%}%>
 
-
+        <div id='friends'>
+       
+         <%for(u of all_users){%>
+            <p>
+             <a href="/users/profile/?id=<%=u.id%>">  <%=u.username%> </a>
+            </p>       
+         <%}%>
+       
+        </div>
 
 </div>

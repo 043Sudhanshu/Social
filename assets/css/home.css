@@ -1,3 +1,6 @@
 #home {
-  height: auto;
-  text-align: center; }
+  height: auto; }
+  #home #All-post-comment {
+    height: auto;
+    width: 40%;
+    border: 2px solid black; }

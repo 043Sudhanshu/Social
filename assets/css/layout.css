@@ -5,3 +5,5 @@ body {
   font-family: "Lucida Console", Courier, monospace; }
   body h1 {
     color: red; }
+  body a {
+    color: red; }
