@@ -5,7 +5,6 @@ const app=express();
 /****data base*****/
 
 const db=require('./config/mongoose');
-const user=require('./models/user');
 
 /***view***/
 
@@ -56,6 +55,16 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setUserToLocals);
+
+const flash=require('connect-flash');
+app.use(flash());
+app.use(function(req,res,next){
+  console.log((req.flash('success')));
+  res.locals.flash={
+    'success':req.flash('success')
+  }
+  next(); 
+});
 
 /*****routes****/
 app.use('/',require('./routes/index.js'));
