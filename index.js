@@ -59,7 +59,6 @@ app.use(passport.setUserToLocals);
 const flash=require('connect-flash');
 app.use(flash());
 app.use(function(req,res,next){
-  console.log((req.flash('success')));
   res.locals.flash={
     'success':req.flash('success')
   }

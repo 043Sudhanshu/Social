@@ -6,8 +6,7 @@ module.exports.login=function(req,res){
     
     return res.redirect('/users/profile');
   }else{
-    
-  return res.render('login',{
+    return res.render('login',{
       title:'login'
     });
   }
@@ -54,11 +53,12 @@ module.exports.create=async function(req,res){
 }
 
 module.exports.createSession=function(req,res){
-  req.flash('success','log-in');
+  req.flash('success','logged in successfully');
   return res.redirect('/');
 }
 
 module.exports.logout=function(req,res){
   req.logout();
+  req.flash('success','logged out successfully');
   return res.redirect('/');
 }

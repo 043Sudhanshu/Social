@@ -4,19 +4,28 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="/css/layout.css">
         <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="HandheldFriendly" content="true">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
         <%- style%>
     </head>
     <body>
         <%-include('_header');%>
-        <%if(flash.success && flash.success.length>0){%>
-            <%= flash.success %>
-        <%}%>
         <%-(body)%>
         <%if(!locals.user){%>
         <%-include('_footer');%>
         <%}%>
         <%- script%>
+        <script>
+       
+         <%if(flash.success.length > 0){%>
+            new Noty({
+                theme:'sunset',
+                type: 'success',
+                layout: 'topRight',
+                timeout:1000,
+                text: '<%= flash.success %>'
+            }).show();
+         <%}%>
+        </script>
     </body>
 </html>
