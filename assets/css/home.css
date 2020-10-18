@@ -1,6 +1,11 @@
 #home {
-  height: auto; }
+  display: flex;
+  background-color: #300000;
+  color: #abff00; }
   #home #All-post-comment {
-    height: auto;
-    width: 40%;
-    border: 2px solid black; }
+    width: 70%;
+    padding: 10px; }
+  #home #friends {
+    width: 25%;
+    padding: 10px;
+    border-left: 2px solid #abff00; }

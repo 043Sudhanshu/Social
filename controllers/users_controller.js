@@ -30,6 +30,16 @@ module.exports.profile=function(req,res){
     });
 }
 
+module.exports.update=function(req,res){
+  if(req.user.id == req.query.id){
+    user.findByIdAndUpdate(req.query.id,req.body,function(err,USER){});
+    return res.redirect('back');
+  }
+  else{
+    return res.status(401).send('Unauthorized');
+  }
+}
+
 module.exports.create=function(req,res){
    user.findOne({email:req.body.email},function(err,USER){
      if(!USER && req.body.password==req.body.confirm_password){
