@@ -7,16 +7,15 @@
 
 
 <% if(locals.user) {%>
-    
 
 <div id='All-post-comment'>
         <h3> POST HERE ! </h3>
-        <form action='/posts/create' method="POST">
-        <textarea name="content" rows="5" cols="40" placeholder="Type here..."> </textarea><br><br>
+        <form action='/posts/create' method="POST" id="postForm">
+        <textarea name="content" rows="5" cols="40" placeholder="Type here..." required></textarea>
         <input type="submit" value="POST">
         </form>
 
-<ul>
+<ul id="posts-list">
  <%for(post of posts){%>
             <li>    
                    <%if(post.usr.id==locals.user.id){%>    
@@ -24,7 +23,7 @@
                     <%}%>
                     name : <small> <%= post.usr.username %> </small> <br>
                         post : <%= post.content%> <br> <br>
-                <ul>
+                <ul id="comments-list">
                         
                         <%for(comment of post.commentidarray){%>
                                 <li> 

@@ -4,14 +4,15 @@ const localstrategy=require('passport-local').Strategy;
 const user=require('../models/user');
 
 passport.use(new localstrategy({
-    usernameField:'email'
-},function(Email,password,done){
+    usernameField:'email',
+    passReqToCallback:true
+},function(req,Email,password,done){
    
     user.findOne({email:Email},function(err,USER){
         if(err){return done(err);}
         if(!USER || password!=USER.password){
-            console.log("Invalid username/password");
-          return done(null,false);
+            req.flash('error','Invalid username/password');
+            return done(null,false);
         }else{
             console.log("Authenticated user");
          return done(null,USER);

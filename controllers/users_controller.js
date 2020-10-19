@@ -3,7 +3,6 @@ const user=require('../models/user');
 module.exports.login=function(req,res){
   
   if(req.isAuthenticated()){
-    
     return res.redirect('/users/profile');
   }else{
     return res.render('login',{
@@ -23,6 +22,7 @@ module.exports.signup=function(req,res){
 }
 
 module.exports.profile=function(req,res){
+  
     const id=req.query.id;
     user.findById(id,function(err,USER){
       return res.render('users_profile',{
@@ -35,6 +35,7 @@ module.exports.profile=function(req,res){
 module.exports.update=function(req,res){
   if(req.user.id == req.query.id){
     user.findByIdAndUpdate(req.query.id,req.body,function(err,USER){});
+    req.flash('success','user updated');
     return res.redirect('back');
   }
   else{
@@ -46,6 +47,7 @@ module.exports.create=async function(req,res){
   const USER=await user.findOne({email:req.body.email});
    if(!USER && req.body.password==req.body.confirm_password){
     user.create(req.body,function(err,USER){});
+   req.flash('success','user created');
     return res.render('login',{title:"login"});
  }else{
   return res.redirect('back');

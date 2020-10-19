@@ -6,6 +6,8 @@
         <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+       
         <%- style%>
     </head>
     <body>
@@ -17,7 +19,7 @@
         <%- script%>
         <script>
        
-         <%if(flash.success.length > 0){%>
+         <%if( flash.success.length > 0){%>
             new Noty({
                 theme:'sunset',
                 type: 'success',
@@ -26,6 +28,16 @@
                 text: '<%= flash.success %>'
             }).show();
          <%}%>
+         <%if( flash.error.length > 0){%>
+            new Noty({
+                theme:'sunset',
+                type: 'error',
+                layout: 'topRight',
+                timeout:1000,
+                text: '<%= flash.error %>'
+            }).show();
+         <%}%>
         </script>
+        <script src="/js/create_post_ajax.js"> </script>
     </body>
 </html>
