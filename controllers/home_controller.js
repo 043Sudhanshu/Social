@@ -4,6 +4,7 @@ const post=require('../models/post');
 module.exports.home=function(req,res){
 
    post.find({})
+   .sort('-createdAt')
    .populate('usr')
    .populate({
       path:'commentidarray',

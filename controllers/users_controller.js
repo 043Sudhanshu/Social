@@ -3,7 +3,7 @@ const user=require('../models/user');
 module.exports.login=function(req,res){
   
   if(req.isAuthenticated()){
-    return res.redirect('/users/profile');
+    return res.redirect('/');
   }else{
     return res.render('login',{
       title:'login'

@@ -25,19 +25,7 @@ module.exports.createPost=async function(req,res){
 
 
 
-//  module.exports.delete=function(req,res){
 
-//     post.findById(req.query.id,function(err,POST){
-//      if(POST && POST.usr==req.user.id){  
-//          comment.deleteMany({postid:POST.id},function(err,COMMENT){});
-//         POST.remove();
-//         return res.redirect('back');
-//      }else{
-//        return res.redirect('back');
-//      }
-//     });
-
-//  }
 
  module.exports.delete=async function(req,res){
   try{
@@ -45,6 +33,14 @@ module.exports.createPost=async function(req,res){
     if(POST && POST.usr==req.user.id){
     await comment.deleteMany({postid:req.query.id});
     POST.remove();
+    if(req.xhr){
+       return res.status(200).json({
+         data:{
+            id:req.query.id
+         },
+         message:"post id"
+       });
+    }
     req.flash('success','post and its comments are deleted');
     }
     return res.redirect('back');

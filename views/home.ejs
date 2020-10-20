@@ -17,9 +17,10 @@
 
 <ul id="posts-list">
  <%for(post of posts){%>
-            <li>    
+    <div id="<%= post.id %>">           
+        <li>    
                    <%if(post.usr.id==locals.user.id){%>    
-                    <a href="/posts/delete/?id=<%=post.id%>"> X </a>
+                    <a class="deletePost" id="id-<%=post.id%>" href="/posts/delete/?id=<%=post.id%>"> X </a>
                     <%}%>
                     name : <small> <%= post.usr.username %> </small> <br>
                         post : <%= post.content%> <br> <br>
@@ -44,6 +45,8 @@
                 <input type="submit" value="comment">
         </form>
 </div>
+
+    </div>
 <%}%>
 </ul>   
 </div>
