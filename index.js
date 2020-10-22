@@ -30,7 +30,7 @@ app.set('layout extractScripts',true);
 
 app.use(express.urlencoded());
 app.use(express.static('./assets'));
-
+app.use('/uploads',express.static(__dirname+'/uploads'));
 /**passport-authetication / express-session (session-cookie) / mongostore ***/
 
 const passport=require('passport');
@@ -56,6 +56,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setUserToLocals);
 
+/**for noty notification */
 const flash=require('connect-flash');
 app.use(flash());
 app.use(function(req,res,next){

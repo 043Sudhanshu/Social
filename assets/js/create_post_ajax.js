@@ -10,18 +10,19 @@
                 data:$('#postForm').serialize(),
                 success:function(xhrdata){
                  $('#posts-list').prepend(postDom(xhrdata.data.POST));
-                 $(`#id-${xhrdata.data.POST._id}`).click(function(e){
-                    e.preventDefault();
-                    $.ajax({
-                        type:'get',
-                        url:$(`#id-${xhrdata.data.POST._id}`).prop('href'),
-                        success:function(Data){
-                          $(`#${Data.data.id}`).remove();
-                        },error:function(error){
-                          console.log(error);
-                        }
-                    });
-                }); 
+
+                                $(`#id-${xhrdata.data.POST._id}`).click(function(e){
+                                    e.preventDefault();
+                                    $.ajax({
+                                        type:'get',
+                                        url:$(`#id-${xhrdata.data.POST._id}`).prop('href'),
+                                        success:function(Data){
+                                        $(`#${Data.data.id}`).remove();
+                                        },error:function(error){
+                                        console.log(error);
+                                        }
+                                    });
+                                }); 
                 },error:function(error){
                  console.log(error);
                  return;
