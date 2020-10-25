@@ -34,7 +34,7 @@ app.use('/uploads',express.static(__dirname+'/uploads'));
 /**passport-authetication / express-session (session-cookie) / mongostore ***/
 
 const passport=require('passport');
-const passportLocalStrategy=require('./config/passport');
+const passportLocalStrategy=require('./config/passport-local-strategy');
 const session=require('express-session');
 const mongoStore=require('connect-mongo')(session);
 
@@ -55,6 +55,10 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setUserToLocals);
+
+const passportJWTstrategy=require('./config/passport-jwt-strategy');
+
+const passportOauth2startegy=require('./config/passport-google-oauth');
 
 /**for noty notification */
 const flash=require('connect-flash');
